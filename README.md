@@ -29,8 +29,8 @@ Bash client for macOS and Linux, based on `openssl enc` (`libreSSL enc`) command
   ```
 3. Edit the following variables of the `pass.sh` script:
   ```sh
-  LOCALE_PATH="/path/to/locale/folder"
-  REMOTE_PATH="/path/to/dropbox/"
+  LOCALE_PATH="/path/to/locale/folder/"
+  REMOTE_PATH="/path/to/dropbox/or/icloud/"
   ```
 4. Create a new file, e.g. `pwd.txt`, and insert into it all the passwords you want to protect.  
   (You can use Markdown markup or every other depending your preferences).
@@ -60,5 +60,5 @@ Bash client for macOS and Linux, based on `openssl enc` (`libreSSL enc`) command
 
 Every time you save changes locally with `pass -s|--save`, a copy of the encrypted file is made in the `REMOTE_PATH`, with this format:
 ```
-/path/to/dropbox/2024-07-23_pwd.aes
+/path/to/dropbox/YYYY-mm-dd_pwd.aes
 ```
