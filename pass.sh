@@ -9,7 +9,7 @@
 SCRIPT_NAME="$(basename ${0})"
 
 LOCALE_PATH="/path/to/locale/folder"
-REMOTE_PATH="/path/to/dropbox/"
+REMOTE_PATH="/path/to/remote/folder"
 REMOTE_SUFFIX="_pwd.aes"
 
 FILE_ENC="$LOCALE_PATH.pwd.aes"
@@ -137,8 +137,8 @@ function encrypt {
 # ------------------------------------------------------------------------------
 function show {
   decrypt
-  open $FILE_TMP
-  echo "Remember to run \"pass -c|--clean\" to clean the temporary files."
+  cat $FILE_TMP
+  echo "Remember to run \"pass -c|--clean\" to clean up the temporary files."
 }
 
 # ------------------------------------------------------------------------------
@@ -149,7 +149,7 @@ function doctor {
 # ------------------------------------------------------------------------------
 function clean {
   rm $FILE_TMP
-  echo "The password folder has been cleaned."
+  echo "The password folder has been cleaned up."
 }
 
 # ------------------------------------------------------------------------------
@@ -163,7 +163,7 @@ function restore {
 function edit {
   decrypt
   mv $FILE_ENC $FILE_BKP
-  open $FILE_TMP
+  vim $FILE_TMP
   echo "Remember to run \"pass -s|--save\" for saving changes."
   echo "In case of errors, run \"pass -r|--restore\" to restore the password file."
 }

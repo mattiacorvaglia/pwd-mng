@@ -19,23 +19,23 @@ Bash client for macOS and Linux, based on `openssl enc` (`libreSSL enc`) command
 ## Initialization
 
 1. Clone this repository into your home and rename the folder, e.g. `.pwd-mng`.
-2. Add an alias into your `.bash_profile` or `.zshrc` configuration file to be able to run the script from everywhere:
+2. Add an alias into your `.bashrc` or `.zshrc` configuration file to be able to run the script from everywhere:
   ```sh
-  # add this line into .bash_profile
+  # add this line into .bashrc
   alias pass='~/.pwd-mng/pass.sh'
 
-  # Save & close the file, then update the shell environment
-  source .zshrc
+  # Then apply changes
+  source .bashrc
   ```
 3. Edit the following variables of the `pass.sh` script:
   ```sh
   LOCALE_PATH="/path/to/locale/folder/"
-  REMOTE_PATH="/path/to/dropbox/or/icloud/"
+  REMOTE_PATH="/path/to/dropbox/or/whatever/"
   ```
 4. Create a new file, e.g. `pwd.txt`, and insert into it all the passwords you want to protect.  
   (You can use Markdown markup or every other depending your preferences).
 5. Run `pass -i ` to generate the first version of your encrypted password file.
-6. Run `pass -c` to clean the folder.
+6. Run `pass -c` to clean up the folder.
 
 ---
 
@@ -60,5 +60,5 @@ Bash client for macOS and Linux, based on `openssl enc` (`libreSSL enc`) command
 
 Every time you save changes locally with `pass -s|--save`, a copy of the encrypted file is made in the `REMOTE_PATH`, with this format:
 ```
-/path/to/dropbox/YYYY-mm-dd_pwd.aes
+/path/to/remote/YYYY-mm-dd_pwd.aes
 ```
