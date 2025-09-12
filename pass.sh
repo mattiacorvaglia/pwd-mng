@@ -86,7 +86,7 @@ function decrypt {
   echo ""
 
   # Decrypt the file
-  openssl enc -aes-256-cbc -base64 -d -in $FILE_ENC -out $FILE_TMP -k $PASSPRHASE 2> /dev/null
+  openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -base64 -d -in $FILE_ENC -out $FILE_TMP -k $PASSPRHASE 2> /dev/null
 
   # Check the exit status
   if [ $? -ne 0 ]
@@ -106,7 +106,7 @@ function encrypt {
   echo ""
 
   # Check the passphrase
-  openssl enc -aes-256-cbc -base64 -d -in $FILE_BKP -out $FILE_CHK -k $PASSPRHASE 2> /dev/null
+  openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -base64 -d -in $FILE_BKP -out $FILE_CHK -k $PASSPRHASE 2> /dev/null
 
   # Check the exit status
   if [ $? -ne 0 ]
@@ -117,7 +117,7 @@ function encrypt {
     exit 1
   else
     # Encrypt the new secret file
-    openssl enc -aes-256-cbc -base64 -salt -in $FILE_TMP -out $FILE_ENC -k $PASSPRHASE 2> /dev/null
+    openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -base64 -salt -in $FILE_TMP -out $FILE_ENC -k $PASSPRHASE 2> /dev/null
 
     if [ $? -ne 0 ]
     then
@@ -195,13 +195,11 @@ function init {
     echo "Invalid option. You must provide a file after -i|--init option."
     exit 1
   fi
-  mv $1 $FILE_TMP
-  openssl enc -aes-256-cbc -base64 -salt -in $FILE_TMP -out $FILE_ENC 2> /dev/null
+  mv $LOCALE_PATH$1 $FILE_TMP
+  openssl enc -aes-256-cbc -md sha512 -pbkdf2 -iter 1000000 -base64 -salt -in $FILE_TMP -out $FILE_ENC 2> /dev/null
   if [ $? -ne 0 ]
   then
     echo "Error while encrypting the new file."
-    rm $FILE_TMP
-    unset PASSPRHASE
     exit 1
   fi
   rm $FILE_TMP
