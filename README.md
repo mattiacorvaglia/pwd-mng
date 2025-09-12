@@ -1,6 +1,6 @@
-# Bash Password Manager
+# Shell Password Manager
 
-Bash client for macOS and Linux, based on `openssl enc` (`libreSSL enc`) command.
+Shell utility for macOS and Linux, based on `openssl enc` (`libreSSL enc`).
 
 @author Mattia Corvaglia
 
@@ -16,25 +16,22 @@ Bash client for macOS and Linux, based on `openssl enc` (`libreSSL enc`) command
 
 ---
 
-## Initialization
+## Getting started
 
-1. Clone this repository into your home and rename the folder, e.g. `.pwd-mng`.
-2. Add an alias into your `.bashrc` or `.zshrc` configuration file to be able to run the script from everywhere:
+1. Clone this repository in your local host and - eventually - rename the folder, e.g. `.pwd`.
+2. Add an alias into your `.bashrc` (or `.zshrc`) file to be able to run the script from everywhere:
   ```sh
-  # add this line into .bashrc
-  alias pass='~/.pwd-mng/pass.sh'
-
-  # Then apply changes
-  source .bashrc
+  echo "alias pass=~/.pwd/pass.sh" >> ~/.bashrc
+  source ~/.bashrc
   ```
 3. Edit the following variables of the `pass.sh` script:
   ```sh
   LOCALE_PATH="/path/to/locale/folder/"
   REMOTE_PATH="/path/to/dropbox/or/whatever/"
   ```
-4. Create a new file, e.g. `pwd.txt`, and insert into it all the passwords you want to protect.  
+4. Create a new file, e.g. `pwd.txt`, and fill it with all the passwords you want to protect.  
   (You can use Markdown markup or every other depending your preferences).
-5. Run `pass -i ` to generate the first version of your encrypted password file.
+5. Run `pass -i pwd.txt` to generate the first version of your encrypted password file.
 6. Run `pass -c` to clean up the folder.
 
 ---
